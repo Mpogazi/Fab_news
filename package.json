@@ -1,0 +1,23 @@
+{
+  "name": "intern_project",
+  "version": "1.0.0",
+  "description": "Angular JS intern projects",
+  "main": "main.js",
+  "scripts": {
+    "test": "node main.js"
+  },
+  "dependencies": {
+    "body-parser": "latest",
+    "express": "^4.15.2",
+    "mongodb": "^2.2.33",
+    "path": "^0.12.7",
+    "pug": "^2.0.3",
+    "validator": "latest"
+  },
+  "keywords": [
+    "Intern",
+    "Projects"
+  ],
+  "author": "Fabrice Bigabiro Mpogazi",
+  "license": "MIT"
+}

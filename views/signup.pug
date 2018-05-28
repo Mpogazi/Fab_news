@@ -1,0 +1,38 @@
+extends layout.pug
+
+block content
+	h1 Welcome to URUBUTO
+	h3 Fill the form to see Magic
+	div(class="w3-col m3 w3-container w3-center")
+		div(class="w3-container w3-teal")
+			h2(class="w3-center") Login
+		form(method="GET", action="/signup")
+			label(class="w3-text-teal") Name
+			input(
+				type='text'
+				name='name'
+				class="w3-input w3-border w3-light-grey"
+			)
+			label(class="w3-text-teal") Email
+			input(
+				type='text'
+				name='email'
+				class="w3-input w3-border w3-light-grey"
+			)
+			label(class="w3-text-teal") Password
+			input(
+				type='password'
+				name='password'
+				class="w3-input w3-border w3-light-grey"
+			)
+			label(class="w3-text-teal") Retype Password
+			input(
+				type='password'
+				name='retypePassword'
+				class="w3-input w3-border w3-light-grey"
+			)
+			br
+			button(
+				value='Submit'
+				class="w3-btn w3-blue-grey"
+			) Sign Up
