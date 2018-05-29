@@ -48,8 +48,10 @@ app.get('/signup', (request, response) => {
 
 // Home after signup or login
 app.get('/index', (request, response) => {
-	response.send("<h1> Welcome to page. </h1>");
-})
+	User.find((err, docs) => {
+		response.send(docs);
+	});
+});
 
 
 // Building post routes
