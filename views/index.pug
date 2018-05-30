@@ -10,11 +10,9 @@ block content
 						h1 {{article.title}}
 					div.w3-container
 						p {{article.description}}
-						a(href="{{article.url}}") Article
-						br
+						a(href="{{article.url}}")
+							h5 {{article.source.name}}
 						a(href="{{article.urlToImage}}") Images
 					footer(class="w3-container w3-teal")
-						h5 {{article.source.name}}
 						h5 {{article.publishedAt}}
-				br
 	script(src="/controllers/index_ctrl.js")
