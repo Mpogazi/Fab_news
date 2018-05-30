@@ -104,7 +104,7 @@ app.post('/login', (request, response) => {
 		email: email_in,
 	}, function(error, docs) {
 		if(error)
-			return response.send("Error\n");
+			return response.send("Service Not Available\n");
 		if(docs.length < 1)
 			return response.send("Person is not Member\n");
 		bcrypt.compare(pass_in, docs[0].password, function(err, resp) {
