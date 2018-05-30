@@ -36,3 +36,12 @@ block content
 				value='Submit'
 				class="w3-btn w3-blue-grey"
 			) Sign Up
+
+	table(ng-app="theApp" ng-controller="myCtrl" ng-show='users.length')
+		tr
+			th Name
+			th Amount
+		tr(ng-repeat='user in users|filter:search')
+			td {{user.username}}
+			td {{user.email}}
+	script(src="/controllers/myCtrl.js")

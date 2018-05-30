@@ -10,8 +10,14 @@ var app = express();
 var bcrypt = require('bcrypt');
 const saltRounds = 10;
 
+// For Sending requests
+var request = require('request');
+
+
+
 // Models
 const User = require('./models/user.js');
+const Article = require('./models/news.js');
 
 // Setting the view with pug
 app.set('views', path.join(__dirname, 'views'));
@@ -21,6 +27,11 @@ app.set('view engine', 'pug');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Serving resources from other different files
+app.use('/controllers', express.static(__dirname + '/controllers'));
+
+
 app.use(validator());
 
 // Mongodb Connection points
@@ -46,11 +57,29 @@ app.get('/signup', (request, response) => {
 	response.render('signup');
 });
 
+app.get('/index', (req, res) => {
+	res.render('index');
+});
+
 // Home after signup or login
-app.get('/index', (request, response) => {
-	User.find((err, docs) => {
-		response.send(docs);
-	});
+app.get('/index.news', (req, response) => {
+	
+	// Requesting news from a site
+	var url = 'https://newsapi.org/v2/top-headlines?' +
+        'country=us&' +
+        'apiKey=87adc17a1e774a8eaa898dd1d49e5f30';
+
+    request({
+    	uri: url,
+		method: "GET",
+		timeout: 10000,
+		followRedirect: true,
+		maxRedirects: 15
+    }, function(err, res, body) {
+    	if(err)
+			response.send("Some issues Happened");
+		response.send(body);
+    });	
 });
 
 

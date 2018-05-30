@@ -1,8 +1,20 @@
 extends layout.pug
 
 block content
-	div(class="w3-container w3-center")
-		h1 Welcome to this joke page
-
-	p(class="w3-col m6 w3-center") Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis fringilla nisl, non bibendum arcu. Lorem ipsum dolor sit amet, consectetur amet dipiscing elit. Quisque placerat pretium risus quis auctor. In varius tortor vel sagittis egestas. Duis in convallis nulla. Fusce elit turpis, dictum et hendrerit consectetur, aliquam vel elit. Vivamus purus sapien, posuere quis vulputate quis, viverra nec odio. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc euismod, lorem quis pellentesque euismod, risus eros posuere mauris, eget maximus est tellus vitae orci. Quisque et nunc ut diam congue efficitur. Duis sagittis risus ante. Sed id ipsum non nisl mattis tempor. Ut luctus hendrerit dolor sed luctus. Maecenas fermentum augue vel urna ultrices aliquet. Nulla mollis, lorem quis dictum rutrum, sem leo consectetur turpis, id venenatis tortor risus et dui. Praesent eget sapien sed leo convallis lacinia vulputate ac ante.
-	h3 Goodbye
+	div(ng-app="App" ng-controller="index_ctrl" class="w3-container w3-center")
+		h1 News (What's Happening around the world)
+		div(ng-show="news.length")
+			div(ng-repeat="article in news |filter:search")
+				div(class="w3-col s4 w3-card-4")
+					header(class="w3-container w3-gray")
+						h1 {{article.title}}
+					div.w3-container
+						p {{article.description}}
+						a(href="{{article.url}}") Article
+						br
+						a(href="{{article.urlToImage}}") Images
+					footer(class="w3-container w3-teal")
+						h5 {{article.source.name}}
+						h5 {{article.publishedAt}}
+				br
+	script(src="/controllers/index_ctrl.js")
