@@ -6,7 +6,7 @@ block content
 	div(ng-app='theApp' ng-controller='login_ctrl' class="w3-col m3 w3-container w3-center")
 		div(class="w3-container w3-teal")
 			h2(class="w3-center") Login
-		form(method="GET", action="/login")
+		form
 			label(class="w3-text-teal") Email
 			input(
 				type='text'
@@ -24,5 +24,6 @@ block content
 			br
 			button(
 				class="w3-btn w3-blue-grey"
-				value='Submit'
+				ng-click="login()"
 			) Login
+	script(src="/controllers/login_ctrl.js")

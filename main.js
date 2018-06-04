@@ -4,6 +4,8 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var validator = require('express-validator');
 var path = require('path');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
 var app = express();
 
 // For Password Encryption
@@ -26,6 +28,12 @@ app.set('view engine', 'pug');
 // Adding a bodyParser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use(session({
+	secret: "Father Lord",
+	resave: true,
+	saveUninitialized: true
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Serving resources from other different files
@@ -111,7 +119,6 @@ app.post('/login', (request, response) => {
 			if(resp)
 				return response.send(docs[0]);
 			response.send("Wrong Password or Username\n");
-			//response.send("Wrong Password or Username\n");
 		});
 	});
 });
@@ -130,6 +137,17 @@ app.post('/signup', (request, response) => {
 	// Encrypting the password
 	var salt = bcrypt.genSaltSync(saltRounds);
 	var hashed_pass = bcrypt.hashSync(request.body.password, salt);
+
+	User.findOne({
+		email: request.body.email
+	}, function(error, doc) {
+		if(error)
+			return response.send("Service Not Available\n");
+		if(doc.length == 1)
+			request.redirect('/user_in');
+	});
+
+
 
 	new User({
 		username: request.body.username,

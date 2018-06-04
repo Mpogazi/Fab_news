@@ -2,19 +2,20 @@ angular.module('theApp', []).controller('signup_ctrl', ['$scope', '$http', signu
 
 function signup_ctrl($scope, $http) {
 
-	// Preparing for the signup data and config
-	var req = {
-		method: 'POST',
-		url: '/signup',
-		data: {username: $scope.username, email: $scope.email,
-			password: $scope.password}
+	$scope.signup =() => {
+		// Preparing for the signup data and config
+		var req = {
+			method: 'POST',
+			url: '/signup',
+			data: {username: $scope.username, email: $scope.email,
+				password: $scope.password}
+		}
+		// Sending the request for signup
+		$http(req)
+		.then(function onSuccess(response) {
+			response.send(response.body);
+		}, function onError(response) {
+			response.send(response.body)
+		});
 	}
-
-	// Sending the request for signup
-	$http(req)
-	.then(function onSuccess(response) {
-
-	}, function onError(response) {
-
-	});
 }
