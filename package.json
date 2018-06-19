@@ -10,7 +10,7 @@
     "bcrypt": "^2.0.1",
     "body-parser": "latest",
     "cookie-parser": "^1.4.3",
-    "express": "^4.15.2",
+    "express": "^4.16.3",
     "express-session": "^1.15.6",
     "express-validator": "^5.2.0",
     "mongodb": "^2.2.33",
