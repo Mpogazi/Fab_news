@@ -37,7 +37,7 @@ mongoose.connect(MONGOOSE_URI, function(error) {
 });
 
 // Index page routing
-app.get('/', api.getIndex);
+app.get('/', apiController.getIndex);
 
 // Home after signup or login
 app.get('/index.news', (req, response) => {
