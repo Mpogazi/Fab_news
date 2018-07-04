@@ -25,11 +25,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Serving resources from other different files
 app.use('/controllers', express.static(__dirname + '/controllers'));
 
+// Allowing CORS
+app.use(function(request, response, next) {
+	response.header("Access-Control-Allow-Origin", "*");
+	response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	next();
+});
 
 app.use(validator());
 
-// Mongodb Connection points
-var MONGOOSE_URI = "mongodb://localhost/INTERN_DB";
+// Connecting to the Database rn
+var MONGOOSE_URI = process.env.MONGODB_URI || process.env.MONGOLAB_URI 
+					|| process.env.MONGOHQ_URL || 'mongodb://localhost/INTERN_DB';
+
 mongoose.connect(MONGOOSE_URI, function(error) {
 	if(error)
 		throw error;
