@@ -7,6 +7,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var app = express();
 
+var apiController = require('./controllers/api.js');
 
 // For Sending requests
 var request = require('request');
@@ -36,9 +37,7 @@ mongoose.connect(MONGOOSE_URI, function(error) {
 });
 
 // Index page routing
-app.get('/', (request, response) => {
-	response.render('index');
-});
+app.get('/', api.getIndex);
 
 // Home after signup or login
 app.get('/index.news', (req, response) => {
